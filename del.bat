@@ -1,0 +1,12 @@
+del *.log
+del _temp.o
+del *.rc
+del *.obj
+del *.c
+del *.res
+del *.rsp
+del _hmg_resconfig.h
+del errorlog.htm
+del tly_ver.ch
+del tly_hmg.exe
+del tly.exe
