@@ -24,10 +24,10 @@ RETURN
 PROCEDURE win_EndTheProgram_OnGotFocus()
 *-----------------------------------------------------------------------------*
 
-  CenterModalWindow( "win_EndTheProgram" )
+  SetCenterModalWindow( aFormProperty )
 
-  AutoAdjustControls( "win_EndTheProgram" )
-
+  SetAdjustControls( aFrmControls )
+  
   CTK_DrawBorder( "win_EndTheProgram" )
 
 RETURN

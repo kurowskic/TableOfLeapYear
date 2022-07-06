@@ -3,7 +3,7 @@
 *-----------------------------------------------------------------------------*
 
 #DEFINE  _PRG1_      '2022'
-#DEFINE  _PRG2_      '160'
+#DEFINE  _PRG2_      '187'
 #DEFINE  _PRG3_      '1'
 
 #DEFINE  _DB1_       ''
@@ -11,9 +11,9 @@
 #DEFINE  _DB3_       ''
 
 
-#DEFINE  _OLD_PRG1_  ''
-#DEFINE  _OLD_PRG2_  ''
-#DEFINE  _OLD_PRG3_  ''
+#DEFINE  _OLD_PRG1_  '2022'
+#DEFINE  _OLD_PRG2_  '160'
+#DEFINE  _OLD_PRG3_  '2'
 
 #DEFINE  _OLD_DB1_   ''
 #DEFINE  _OLD_DB2_   ''
@@ -26,78 +26,24 @@
 #DEFINE WERSJA_DB    _DB1_+"."+_DB2_+"."+_DB3_
 
 
-#DEFINE MsgNoYes(c)  MsgYesNo( c , NAZWA_PR , .t. , 0 ,  .F. , .F. )
+#INCLUDE  "hmg.ch"
 
-
-#INCLUDE "Dbstruct.ch"
-#INCLUDE "common.ch"
-#INCLUDE "fileio.ch"
-#INCLUDE "Directry.ch"
-
-
-#IFDEF __SQLITE__
-
-  #IFDEF  _HMG_2_
-    #INCLUDE "hbsqlit3.ch"
-  #ENDIF
-
-#ENDIF
-
-
-#IFDEF _HMG_2_
-
-  #INCLUDE  "minigui.ch"
-
-  #INCLUDE  "miniprint.ch"
-  #INCLUDE  "i_winuser.ch"
-
-  #include "i_UsrInit.ch"
-  #include "i_UsrSOOP.ch"
-
-  #include "hbinkey.ch"
-
-#ENDIF
-
-
-#IFDEF _HMG_3_
-
-  #INCLUDE  "hmg.ch"
-
-#ENDIF
-
-
-#IFDEF _HMG_2_
-
-  #DEFINE  FALSE .F.
-  #DEFINE  TRUE  .T.
-
-#ENDIF
-
+#DEFINE  FALSE .F.
+#DEFINE  TRUE  .T.
 
 #define CRLF CHR( 13 ) + CHR( 10 )
 #define CR CHR( 13 )
 #define LF CHR( 10 )
 
 
-#IFDEF _HMG_2_
+#IFNDEF __XHARBOUR__
 
-  #define HTCAPTION             2
-  #define WM_NCLBUTTONDOWN    161
-
-  #define EM_SETCUEBANNER  0x1501
-
-#ENDIF
-
-#DEFINE VIEW_RECORDS 5
-
-#ifndef __XHARBOUR__
-
-   #xcommand TRY                => bError := errorBlock( {|oError| break( oError ) } ) ;;
+   #XCOMMAND TRY                => bError := errorBlock( {|oError| break( oError ) } ) ;;
                                    BEGIN SEQUENCE
-   #xcommand CATCH [<!oError!>] => errorBlock( bError ) ;;
+   #XCOMMAND CATCH [<!oError!>] => errorBlock( bError ) ;;
                                    RECOVER [USING <oError>] <-oError-> ;;
                                    errorBlock( bError )
-#endif
+#ENDIF
 
 
 MEMVAR APP_ROW
