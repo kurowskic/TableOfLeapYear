@@ -66,9 +66,15 @@ PROCEDURE MakeTableOfLeapYears()
           ENDIF
           FONTCOLOR NIL
           CENTERALIGN .T.
+
+
 #IFDEF _HMG_2_
+
           VCENTERALIGN .T.
+
 #ENDIF
+
+
           BORDER .T.
         END LABEL
 
@@ -79,11 +85,11 @@ PROCEDURE MakeTableOfLeapYears()
 
         IF ISLEAP( CTOD ( "02/01/" + STR( nLeapYear ) ) )
 
-          SetProperty( "win_Main" , cLabel , "Backcolor" , YELLOW )
+          SetProperty( "win_Main" , cLabel , "BackColor" , YELLOW )
 
         ELSE
 
-          SetProperty( "win_Main" , cLabel , "Backcolor" , GREEN )
+          SetProperty( "win_Main" , cLabel , "BackColor" , GREEN )
 
         ENDIF
 
