@@ -4,20 +4,20 @@ PROCEDURE win_main_OnInit()
 
   win_Main.Hide
 
-  AutoAdjustControls( "win_Main" )
+  SetAdjustControls( aFrmControls )
 
-  CenterMainWindow()
+  SetCenterMainWindow()
 
   CTK_DrawBorder( "win_Main" )
 
   MakeTableOfLeapYears()
   MakeNavigation()
 
-  win_Main.Label_Menu_1.backcolor:=GRAY
-  win_Main.Label_Menu_2.backcolor:=GRAY
-  win_Main.Label_Menu_3.backcolor:=BLUE
-  win_Main.Label_Menu_4.backcolor:=GRAY
-  win_Main.Label_Menu_5.backcolor:=GRAY
+  win_Main.Label_Menu_1.BackColor := GRAY
+  win_Main.Label_Menu_2.BackColor := GRAY
+  win_Main.Label_Menu_3.BackColor := BLUE
+  win_Main.Label_Menu_4.BackColor := GRAY
+  win_Main.Label_Menu_5.BackColor := GRAY
 
   win_Main.Show
   DO_Events()
@@ -32,7 +32,6 @@ RETURN
 *-----------------------------------------------------------------------------*
 
 
-#IFDEF _HMG_3_
 *-----------------------------------------------------------------------------*
 PROCEDURE win_main_OnPaint()
 *-----------------------------------------------------------------------------*
@@ -42,7 +41,37 @@ PROCEDURE win_main_OnPaint()
 
 RETURN
 *-----------------------------------------------------------------------------*
-#ENDIF
+
+
+*-----------------------------------------------------------------------------*
+PROCEDURE win_main_OnMouseClick()
+*-----------------------------------------------------------------------------*
+
+  MoveActiveWindow( this.Name )
+
+RETURN
+*-----------------------------------------------------------------------------*
+
+
+*-----------------------------------------------------------------------------*
+PROCEDURE win_main_OnGotFocus()
+*-----------------------------------------------------------------------------*
+
+  MoveActiveWindow( this.Name )
+
+RETURN
+*-----------------------------------------------------------------------------*
+
+
+*-----------------------------------------------------------------------------*
+PROCEDURE win_main_OnLostFocus()
+*-----------------------------------------------------------------------------*
+
+  MoveActiveWindow( this.Name )
+
+
+RETURN
+*-----------------------------------------------------------------------------*
 
 
 *-----------------------------------------------------------------------------*
@@ -52,7 +81,7 @@ PROCEDURE win_Main_btn_About_Action()
   About()
 
   Do_Events()
-  win_Main.lbl_BackGround.Setfocus()
+  win_Main.Setfocus()
 
 RETURN
 *-----------------------------------------------------------------------------*
@@ -65,7 +94,7 @@ PROCEDURE win_Main_btn_ExitPR()
   EndTheProgram()
 
   Do_Events()
-  win_Main.lbl_BackGround.Setfocus()
+  win_Main.Setfocus()
 
 RETURN
 *-----------------------------------------------------------------------------*
@@ -78,7 +107,7 @@ PROCEDURE win_Main_btn_MinPR()
   aFrm := CTK_Minimize( aFrm )
 
   Do_Events()
-  win_Main.lbl_BackGround.Setfocus()
+  win_Main.Setfocus()
 
 RETURN
 *-----------------------------------------------------------------------------*
@@ -88,8 +117,8 @@ RETURN
 PROCEDURE win_Main_buttons_Disable()
 *-----------------------------------------------------------------------------*
 
-  win_Main.btn_about.Enabled       := FALSE
-  win_Main.btn_minPR.Enabled       := FALSE
+  win_Main.btn_About.Enabled       := FALSE
+  win_Main.btn_MinPR.Enabled       := FALSE
   win_Main.btn_ExitPR.Enabled      := FALSE
 
 RETURN
@@ -100,8 +129,8 @@ RETURN
 PROCEDURE win_Main_buttons_Enable()
 *-----------------------------------------------------------------------------*
 
-  win_Main.btn_about.Enabled       := TRUE
-  win_Main.btn_minPR.Enabled       := TRUE
+  win_Main.btn_About.Enabled       := TRUE
+  win_Main.btn_MinPR.Enabled       := TRUE
   win_Main.btn_ExitPR.Enabled      := TRUE
 
 RETURN

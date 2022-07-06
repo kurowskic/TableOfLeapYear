@@ -7,6 +7,8 @@
 PROCEDURE Main()
 *-----------------------------------------------------------------------------*
 
+  LOCAL aControls
+  
   MEMVAR APP_ROW
   MEMVAR APP_COL
   MEMVAR APP_HEIGHT
@@ -21,11 +23,10 @@ PROCEDURE Main()
   MEMVAR fTAHOMA
   MEMVAR fCALIBRI
 
-  MEMVAR aDataBase
-
-  MEMVAR nPage
-
   MEMVAR nYear
+
+  PRIVATE aFrmControls
+  PRIVATE aFormProperty
 
   PUBLIC APP_ROW
   PUBLIC APP_COL
@@ -40,9 +41,6 @@ PROCEDURE Main()
   PUBLIC fTIMES
   PUBLIC fTAHOMA
   PUBLIC fCALIBRI
-
-  PUBLIC aDataBase
-  PUBLIC nPage
 
   PUBLIC nYear
   nYear = 2000
@@ -97,16 +95,18 @@ PROCEDURE Main()
 
   ERRORLEVEL( 0 )
 
-  aDataBase := {}
-  nPage := 1
+  aControls := {}
+  aFrmControls := {}
+  aFormProperty := {}
 
 
 #IFDEF _HMG_3_
 
   APP_ROW    :=    0
   APP_COL    :=    0
-  APP_HEIGHT := 1536
-  APP_WIDTH  :=  824
+  APP_HEIGHT :=  824
+  APP_WIDTH  := 1536
+
 
 #ENDIF
 
@@ -126,6 +126,7 @@ PROCEDURE Main()
       fTIMES   := 'Times New Roman'
       fCALIBRI := 'Calibri'
 
+
     CASE "Windows NT 10" $ OS()
 
       fARIAL   := 'Arial'
@@ -133,6 +134,7 @@ PROCEDURE Main()
       fTAHOMA  := 'Tahoma'
       fTIMES   := 'Times New Roman'
       fCALIBRI := 'Calibri'
+
 
     CASE "Windows 8" $ OS()
 
@@ -142,6 +144,7 @@ PROCEDURE Main()
       fTIMES   := 'Times New Roman'
       fCALIBRI := 'Calibri'
 
+
     CASE "Windows 7" $ OS()
 
       fARIAL   := 'Arial'
@@ -150,12 +153,15 @@ PROCEDURE Main()
       fTIMES   := 'Times New Roman'
       fCALIBRI := 'Calibri'
 
+
     CASE "Windows XP" $ OS()
+
       fARIAL   := 'Arial'
       fCOURIER := 'Courier New'
       fTAHOMA  := 'Tahoma'
       fTIMES   := 'Times New Roman'
       fCALIBRI := 'Calibri'
+
 
     CASE "Windows NT" $ OS()
 
@@ -165,6 +171,7 @@ PROCEDURE Main()
       fTIMES   := 'Times New Roman CE'
       fCALIBRI := 'Times New Roman CE'
 
+
     CASE "Windows 98" $ OS()
 
       fARIAL   := 'Arial'
@@ -172,6 +179,7 @@ PROCEDURE Main()
       fTAHOMA  := 'Tahoma'
       fTIMES   := 'Times New Roman'
       fCALIBRI := 'Times New Roman'
+
 
   END CASE
 
@@ -212,51 +220,160 @@ PROCEDURE Main()
 
 #ENDIF
 
-
     DO CASE
 
-      CASE GetDesktopRealHeight() == GetProperty( "win_Main" , "Height" ) ;
+      CASE INT( GetDesktopRealHeight() ) == INT( GetProperty( "win_Main" , "Height" ) ) ;
            .AND. ;
-           GetDesktopRealWidth() == GetProperty( "win_Main" , "Width" )
+           INT( GetDesktopRealWidth() ) == INT( GetProperty( "win_Main" , "Width" ) )
+
+        APP_ROW    := GetProperty( "win_Main" , "Row" )
+        APP_COL    := GetProperty( "win_Main" , "Col" )
+        APP_HEIGHT := GetProperty( "win_Main" , "Height" )
+        APP_WIDTH  := GetProperty( "win_Main" , "Width" )
 
 
-      CASE GetDesktopRealHeight() < GetProperty( "win_Main" , "Height" ) ;
+      CASE INT( GetDesktopRealHeight() ) < INT( GetProperty( "win_Main" , "Height" ) ) ;
            .AND. ;
-           GetDesktopRealWidth() < GetProperty( "win_Main" , "Width" )
+           INT( GetDesktopRealWidth() ) < INT( GetProperty( "win_Main" , "Width" ) )
 
-             APP_ADJUST_Y :=  GetDesktopRealHeight() / win_Main.Height
-             SetProperty( "win_Main" , "Height" , GetProperty( "win_Main" , "Height" ) * APP_ADJUST_Y )
+        APP_ROW    := GetProperty( "win_Main" , "Row" )
+        APP_COL    := GetProperty( "win_Main" , "Col" )
+        APP_HEIGHT := GetProperty( "win_Main" , "Height" )
+        APP_WIDTH  := GetProperty( "win_Main" , "Width" )
 
-             APP_ADJUST_X := GetDesktopRealWidth() / win_Main.Width
-             SetProperty( "win_Main" , "Width" , GetProperty( "win_Main" , "Width" ) * APP_ADJUST_X )
+        APP_ADJUST_Y := ( GetDesktopRealHeight() / APP_HEIGHT )
+        SetProperty( "win_Main" , "Height" , GetProperty( "win_Main" , "Height" ) * APP_ADJUST_Y )
+
+        APP_ADJUST_X := ( GetDesktopRealWidth() / APP_WIDTH )
+        SetProperty( "win_Main" , "Width" , GetProperty( "win_Main" , "Width" ) * APP_ADJUST_X )
 
 
-      CASE GetDesktopRealHeight() > GetProperty( "win_Main" , "Height" ) ;
+      CASE INT( GetDesktopRealHeight() ) > INT( GetProperty( "win_Main" , "Height" ) ) ;
                .AND. ;
-           GetDesktopRealWidth() > GetProperty( "win_Main" , "Width" )
+           INT( GetDesktopRealWidth() ) > INT( GetProperty( "win_Main" , "Width" ) )
+
+        APP_ROW    := GetProperty( "win_Main" , "Row" )
+        APP_COL    := GetProperty( "win_Main" , "Col" )
+        APP_HEIGHT := GetProperty( "win_Main" , "Height" )
+        APP_WIDTH  := GetProperty( "win_Main" , "Width" )
+
+        APP_ADJUST_Y := 1
+        SetProperty( "win_Main" , "Height" , GetProperty( "win_Main" , "Height" ) * APP_ADJUST_Y )
+
+        APP_ADJUST_X := 1
+        SetProperty( "win_Main" , "Width" , GetProperty( "win_Main" , "Width" ) * APP_ADJUST_X )
+
+
+      CASE INT( GetDesktopRealHeight() ) >= INT( GetProperty( "win_Main" , "Height" ) ) ;
+           .AND. ;
+           INT( GetDesktopRealWidth() ) < INT( GetProperty( "win_Main" , "Width" ) )
+
+        APP_ROW    := GetProperty( "win_Main" , "Row" )
+        APP_COL    := GetProperty( "win_Main" , "Col" )
+        APP_HEIGHT := GetProperty( "win_Main" , "Height" )
+        APP_WIDTH  := GetProperty( "win_Main" , "Width" )
+
+        APP_ADJUST_Y := ( GetDesktopRealHeight() / APP_HEIGHT )
+        SetProperty( "win_Main" , "Height" , GetProperty( "win_Main" , "Height" ) * APP_ADJUST_Y )
+
+        APP_ADJUST_X := ( GetDesktopRealWidth() / APP_WIDTH )
+        SetProperty( "win_Main" , "Width" , GetProperty( "win_Main" , "Width" ) * APP_ADJUST_X )
+
+
+      CASE INT( GetDesktopRealHeight() ) < INT( GetProperty( "win_Main" , "Height" ) ) ;
+           .AND. ;
+           INT( GetDesktopRealWidth() ) > INT( GetProperty( "win_Main" , "Width" ) )
+
+
+        APP_ROW    := GetProperty( "win_Main" , "Row" )
+        APP_COL    := GetProperty( "win_Main" , "Col" )
+        APP_HEIGHT := GetProperty( "win_Main" , "Height" )
+        APP_WIDTH  := GetProperty( "win_Main" , "Width" )
+
+        APP_ADJUST_Y := ( GetDesktopRealHeight() / APP_HEIGHT )
+        SetProperty( "win_Main" , "Height" , GetProperty( "win_Main" , "Height" ) * APP_ADJUST_Y )
+
+        APP_ADJUST_X := ( GetDesktopRealWidth() / APP_WIDTH )
+        SetProperty( "win_Main" , "Width" , GetProperty( "win_Main" , "Width" ) * APP_ADJUST_X )
 
 
     END CASE
 
 
-    APP_ROW    := GetProperty( "win_Main" , "Row" )
-    APP_COL    := GetProperty( "win_Main" , "Col" )
-    APP_HEIGHT := win_Main.Height
-    APP_WIDTH  := win_Main.Width
+    Do_Events()
 
     AADD( aFrm , { "win_Main" , win_Main.Row , win_Main.Col } )
 
     ON KEY ALT+F4 OF win_Main ACTION { || EndTheProgram() }
-    ON KEY F2     OF win_Main ACTION { || CenterMainWindow()    }
+    ON KEY F2     OF win_Main ACTION { || SetCenterMainWindow()    }
+
+ 
+#IFDEF _HMG_2_
 
     SetProperty( "win_Main" , "btn_ExitPR" , "Action" , { || win_main_btn_ExitPr() } )
     SetProperty( "win_Main" , "btn_MinPR"  , "Action" , { || win_main_btn_MinPr()  } )
+    SetProperty( "win_Main" , "btn_About"  , "Action" , { || win_Main_btn_About_Action() } )
+
+#ENDIF
+
 
     win_Main.btn_About.Picture       := 'APP_INFO_20'
     win_Main.btn_MinPR.Picture       := 'APP_MINI_20'
     win_Main.btn_ExitPR.Picture      := 'APP_EXIT_20'
 
-    win_Main.Center
+
+    SetProperty( "win_Main" , "btn_About"  , "Col" , APP_WIDTH - INT( 105 * APP_ADJUST_X ) - 16 )
+    SetProperty( "win_Main" , "btn_MinPR"  , "Col" , APP_WIDTH - INT(  70 * APP_ADJUST_X ) - 08 )
+    SetProperty( "win_Main" , "btn_ExitPR" , "Col" , APP_WIDTH - INT(  35 * APP_ADJUST_X ) - 02 )
+
+    Do_Events()
+
+
+    IF INT( GetDesktopRealHeight() ) > INT( GetProperty( "win_Main" , "Height" ) ) ;
+           .AND. ;
+           INT( GetDesktopRealWidth() ) > INT( GetProperty( "win_Main" , "Width" ) )
+
+      SetCenterMainWindow()
+
+    ENDIF
+
+
+#IFDEF _HMG_2_
+
+    aControls := _GetAllControlsInForm ( "win_Main" )
+
+#ENDIF
+
+
+#IFDEF _HMG_3_
+
+    aControls := _GetArrayOfAllControlsForForm ( "win_Main" )
+
+#ENDIF
+
+
+    FOR nI := 1 TO LEN( aControls )
+
+      AADD( aFrmControls ,;
+      { "win_Main" , aControls[ nI ] ,;
+      GetProperty( "win_Main" , aControls[ nI ] , "Row" ) ,;
+      GetProperty( "win_Main" , aControls[ nI ] , "Col" ) ,;
+      GetProperty( "win_Main" , aControls[ nI ] , "Width" ) ,;
+      GetProperty( "win_Main" , aControls[ nI ] , "Height" ) ,;
+      GetProperty( "win_Main" , aControls[ nI ] , "FontSize" ) } )
+
+    NEXT nI
+
+
+    AADD( aFormProperty ,;
+    { ;
+      "win_Main" ,;
+      GetProperty( "win_Main" , "Row" ) ,;
+      GetProperty( "win_Main" , "Col" ) ,;
+      GetProperty( "win_Main" , "Width" ) ,;
+      GetProperty( "win_Main" , "Height" ),;
+    } )
+
     win_Main.Activate
 
   ELSE
@@ -265,90 +382,9 @@ PROCEDURE Main()
 
   ENDIF
 
+
 RETURN
 *-----------------------------------------------------------------------------*
-
-
-#IFDEF _HMG_3_
-*-----------------------------------------------------------------------------*
-// http://www.hmgforum.com/viewtopic.php?f=9&t=4806
-*-----------------------------------------------------------------------------*
-FUNCTION LabelEventHandler()
-*-----------------------------------------------------------------------------*
-
-  STATIC lTracking := .F.
-  LOCAL  nHWnd := EventHWND()
-  LOCAL  nMsg  := EventMSG()
-  LOCAL  cControl
-  LOCAL  cForm
-
-
-  SWITCH nMsg
-
-    CASE WM_MOUSEMOVE
-
-
-      IF ! lTracking
-
-        GetControlNameByHandle( nHWnd , @cControl , @cForm )
-
-        SetProperty( cForm , cControl , "FONTCOLOR" , { 255 , 255 , 255 } )
-        SetProperty( cForm , cControl , "BACKCOLOR" , { 000 , 170 , 000 } )
-
-        lTracking := TrackMouseEvent( nHWnd ) //TME_LEAVE is default flag
-
-      ENDIF
-
-
-      EXIT
-
-
-    CASE WM_MOUSELEAVE
-
-      GetControlNameByHandle( nHWnd , @cControl , @cForm )
-
-      SetProperty( cForm , cControl , "FONTCOLOR" , { 000 , 170 , 000 } )
-      SetProperty( cForm , cControl , "BACKCOLOR" , { 255 , 255 , 255 } )
-
-      lTracking := .F.
-
-      EXIT
-
-
-  ENDSWITCH
-
-RETURN NIL
-*-----------------------------------------------------------------------------*
-#ENDIF
-
-
-#IFDEF _HMG_3_
-*-----------------------------------------------------------------------------*
-#pragma BEGINDUMP
-
-#include "SET_COMPILE_HMG_UNICODE.ch"
-#include "HMG_UNICODE.h"
-
-#include <windows.h>
-#include "hbapi.h"
-
-// https://msdn.microsoft.com/en-us/library/windows/desktop/ms646265(v=vs.85).aspx
-// TrackMouseEvent(nHWnd, [nFlags], [nHoverTime]) --> lSuccess
-HB_FUNC( TRACKMOUSEEVENT )
-{
-  TRACKMOUSEEVENT tmi;
-
-  tmi.cbSize      = sizeof( TRACKMOUSEEVENT );
-  tmi.dwFlags     = HB_ISNUM(3) ? (DWORD) hb_parni(2) : TME_LEAVE;
-  tmi.hwndTrack   = (HWND) HMG_parnl(1);
-  tmi.dwHoverTime = HB_ISNUM(3) ? (DWORD) hb_parni(3) : HOVER_DEFAULT;
-
-  hb_retl(TrackMouseEvent(&tmi));
-}
-
-#pragma ENDDUMP
-*-----------------------------------------------------------------------------*
-#ENDIF
 
 
 *-----------------------------------------------------------------------------*
