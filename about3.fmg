@@ -1,9 +1,11 @@
 *-----------------------------------------------------------------------------*
-* About | _HMG_3_
+* TableOfLeapYear | About.fmg | win_About | _HMG_3_
 *-----------------------------------------------------------------------------*
 
+
+*-----------------------------------------------------------------------------*
 DEFINE WINDOW TEMPLATE ;
-  AT 0 , 0 ;
+  AT 269 , 413 ;
   WIDTH 682 ;
   HEIGHT 384 ;
   VIRTUAL WIDTH Nil ;
@@ -24,7 +26,7 @@ DEFINE WINDOW TEMPLATE ;
   ON SIZE Nil ;
   ON PAINT Nil ;
   BACKCOLOR Nil ;
-  ON GOTFOCUS About_OnGotFocus() ;
+  ON GOTFOCUS win_About_OnGotFocus() ;
   ON LOSTFOCUS Nil ;
   ON SCROLLUP Nil ;
   ON SCROLLDOWN Nil ;
@@ -306,7 +308,7 @@ DEFINE WINDOW TEMPLATE ;
     COL    10
     WIDTH  655
     HEIGHT 35
-    ACTION About_btn_OK()
+    ACTION win_About_btn_OK()
     CAPTION "OK"
     FONTNAME fARIAL
     FONTSIZE 10

@@ -1,7 +1,9 @@
 *-----------------------------------------------------------------------------*
-* tlt_hmg3 | win_Main | _HMG_2_
+* TableOfLeapYear | tly_hmg3.fmg | win_Main | _HMG_2_
 *-----------------------------------------------------------------------------*
 
+
+*-----------------------------------------------------------------------------*
 DEFINE WINDOW TEMPLATE ;
   AT 0 , 0 ;
   WIDTH 1536 ;
@@ -19,19 +21,19 @@ DEFINE WINDOW TEMPLATE ;
   ON INIT win_Main_OnInit() ;
   ON RELEASE Nil ;
   ON INTERACTIVECLOSE Nil ;
-  ON MOUSECLICK MoveActiveWindow( this.Name ) ;
+  ON MOUSECLICK win_main_OnMouseClick() ;
   ON MOUSEDRAG Nil ;
   ON MOUSEMOVE Nil ;
-  ON SIZE Nil ON ;
-  MAXIMIZE Nil ;
+  ON SIZE Nil ;
+  ON MAXIMIZE Nil ;
   ON MINIMIZE Nil ;
   ON PAINT win_Main_OnPaint() ;
   BACKCOLOR { 000 , 085 , 229 } ;
   NOTIFYICON Nil ;
   NOTIFYTOOLTIP Nil ;
   ON NOTIFYCLICK Nil ;
-  ON GOTFOCUS MoveActiveWindow( this.Name ) ;
-  ON LOSTFOCUS Nil ;
+  ON GOTFOCUS win_main_OnGotFocus() ;
+  ON LOSTFOCUS win_main_OnLostFocus() ;
   ON SCROLLUP Nil ;
   ON SCROLLDOWN Nil ;
   ON SCROLLLEFT Nil ;

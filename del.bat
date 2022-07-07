@@ -10,3 +10,5 @@ del errorlog.htm
 del tly_ver.ch
 del tly_hmg.exe
 del tly.exe
+del temp.txt
+del *.bak
