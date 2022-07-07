@@ -1,4 +1,6 @@
 *-----------------------------------------------------------------------------*
+* TableOfLeapYear | About.prg
+*-----------------------------------------------------------------------------*
 #include "tly_hmg.ch"
 *-----------------------------------------------------------------------------*
 
@@ -70,7 +72,7 @@ PROCEDURE About()
 
     ELSE
 
-      SetProperty( "win_About" , "lbl_7"    , "Value"   , "https://sourceforge.net/projects/mingw-w64/"        )
+      SetProperty( "win_About" , "lbl_7"    , "Value"   , "https://sourceforge.net/projects/mingw-w64/" )
 
     ENDIF
 

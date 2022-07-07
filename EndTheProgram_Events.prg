@@ -1,4 +1,9 @@
 *-----------------------------------------------------------------------------*
+* TableOfLeapYear | EndTheProgram_Events.prg
+*-----------------------------------------------------------------------------*
+
+
+*-----------------------------------------------------------------------------*
 PROCEDURE win_EndTheProgram_btn_YES()
 *-----------------------------------------------------------------------------*
 
@@ -27,7 +32,7 @@ PROCEDURE win_EndTheProgram_OnGotFocus()
   SetCenterModalWindow( aFormProperty )
 
   SetAdjustControls( aFrmControls )
-  
+
   CTK_DrawBorder( "win_EndTheProgram" )
 
 RETURN

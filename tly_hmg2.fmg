@@ -1,7 +1,9 @@
 *-----------------------------------------------------------------------------*
-* tlt_hmg2 | win_Main | _HMG_2_
+* TableOfLeapYear | tly_hmg2.fmg | win_Main | _HMG_2_
 *-----------------------------------------------------------------------------*
 
+
+*-----------------------------------------------------------------------------*
 DEFINE WINDOW TEMPLATE ;
   AT 0 , 0 ;
   WIDTH 1536 ;
@@ -9,14 +11,16 @@ DEFINE WINDOW TEMPLATE ;
   ICON 'MAINICON' ;
   MAIN ;
   NOSIZE ;
-  NOSYSMENU;
+  NOSYSMENU ;
   ON INIT win_Main_OnInit() ;
-  BACKCOLOR { 000 , 085 , 229 } ;
-  ON MOUSECLICK MoveActiveWindow( this.Name ) ;
-  ON RESTORE MoveActiveWindow( this.Name ) ;
-  ON GOTFOCUS MoveActiveWindow( this.Name ) ;
   ON PAINT win_Main_OnPaint() ;
-   
+  BACKCOLOR { 000 , 085 , 229 } ;
+  ON MOUSECLICK win_main_OnMouseClick() ;
+  ON GOTFOCUS win_main_OnGotFocus() ;
+  ON LOSTFOCUS win_main_OnLostFocus()
+
+/* See: Show_TitleBar() */
+
   DEFINE BUTTON btn_About
     ROW    2
     COL    1365 + 35 + 35
