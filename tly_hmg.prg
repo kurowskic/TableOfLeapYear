@@ -1,4 +1,6 @@
 *-----------------------------------------------------------------------------*
+* TableOfLeapYear | tly_hmg.prg
+*-----------------------------------------------------------------------------*
 #include "tly_hmg.ch"
 *-----------------------------------------------------------------------------*
 
@@ -8,7 +10,7 @@ PROCEDURE Main()
 *-----------------------------------------------------------------------------*
 
   LOCAL aControls
-  
+
   MEMVAR APP_ROW
   MEMVAR APP_COL
   MEMVAR APP_HEIGHT
@@ -220,6 +222,7 @@ PROCEDURE Main()
 
 #ENDIF
 
+
     DO CASE
 
       CASE INT( GetDesktopRealHeight() ) == INT( GetProperty( "win_Main" , "Height" ) ) ;
@@ -307,7 +310,7 @@ PROCEDURE Main()
     ON KEY ALT+F4 OF win_Main ACTION { || EndTheProgram() }
     ON KEY F2     OF win_Main ACTION { || SetCenterMainWindow()    }
 
- 
+
 #IFDEF _HMG_2_
 
     SetProperty( "win_Main" , "btn_ExitPR" , "Action" , { || win_main_btn_ExitPr() } )
@@ -340,14 +343,14 @@ PROCEDURE Main()
 
 #IFDEF _HMG_2_
 
-    aControls := _GetAllControlsInForm ( "win_Main" )
+    aControls := _GetAllControlsInForm( "win_Main" )
 
 #ENDIF
 
 
 #IFDEF _HMG_3_
 
-    aControls := _GetArrayOfAllControlsForForm ( "win_Main" )
+    aControls := _GetArrayOfAllControlsForForm( "win_Main" )
 
 #ENDIF
 
@@ -356,22 +359,22 @@ PROCEDURE Main()
 
       AADD( aFrmControls ,;
       { "win_Main" , aControls[ nI ] ,;
-      GetProperty( "win_Main" , aControls[ nI ] , "Row" ) ,;
-      GetProperty( "win_Main" , aControls[ nI ] , "Col" ) ,;
-      GetProperty( "win_Main" , aControls[ nI ] , "Width" ) ,;
-      GetProperty( "win_Main" , aControls[ nI ] , "Height" ) ,;
-      GetProperty( "win_Main" , aControls[ nI ] , "FontSize" ) } )
+        GetProperty( "win_Main" , aControls[ nI ] , "Row"      ) ,;
+        GetProperty( "win_Main" , aControls[ nI ] , "Col"      ) ,;
+        GetProperty( "win_Main" , aControls[ nI ] , "Width"    ) ,;
+        GetProperty( "win_Main" , aControls[ nI ] , "Height"   ) ,;
+        GetProperty( "win_Main" , aControls[ nI ] , "FontSize" ) ;
+      } )
 
     NEXT nI
 
 
     AADD( aFormProperty ,;
-    { ;
-      "win_Main" ,;
-      GetProperty( "win_Main" , "Row" ) ,;
-      GetProperty( "win_Main" , "Col" ) ,;
-      GetProperty( "win_Main" , "Width" ) ,;
-      GetProperty( "win_Main" , "Height" ),;
+    { "win_Main" ,;
+      GetProperty( "win_Main" , "Row"    ) ,;
+      GetProperty( "win_Main" , "Col"    ) ,;
+      GetProperty( "win_Main" , "Width"  ) ,;
+      GetProperty( "win_Main" , "Height" )  ;
     } )
 
     win_Main.Activate

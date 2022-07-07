@@ -1,4 +1,6 @@
 *-----------------------------------------------------------------------------*
+* TableOfLeapYear | EndTheProgram.prg
+*-----------------------------------------------------------------------------*
 #include "tly_hmg.ch"
 *-----------------------------------------------------------------------------*
 
@@ -71,11 +73,12 @@ PROCEDURE EndTheProgram()
 
       AADD( aFrmControls ,;
       { "win_EndTheProgram" , aControls[ nI ] ,;
-      GetProperty( "win_EndTheProgram" , aControls[ nI ] , "Row"      ) ,;
-      GetProperty( "win_EndTheProgram" , aControls[ nI ] , "Col"      ) ,;
-      GetProperty( "win_EndTheProgram" , aControls[ nI ] , "Width"    ) ,;
-      GetProperty( "win_EndTheProgram" , aControls[ nI ] , "Height"   ) ,;
-      GetProperty( "win_EndTheProgram" , aControls[ nI ] , "FontSize" ) } )
+        GetProperty( "win_EndTheProgram" , aControls[ nI ] , "Row"      ) ,;
+        GetProperty( "win_EndTheProgram" , aControls[ nI ] , "Col"      ) ,;
+        GetProperty( "win_EndTheProgram" , aControls[ nI ] , "Width"    ) ,;
+        GetProperty( "win_EndTheProgram" , aControls[ nI ] , "Height"   ) ,;
+        GetProperty( "win_EndTheProgram" , aControls[ nI ] , "FontSize" )  ;
+      } )
 
     NEXT nI
 

@@ -1,7 +1,9 @@
 *-----------------------------------------------------------------------------*
-* EndTheProgram | _HMG_2_
+* TableOfLeapYear | EndTheProgram.fmg | win_EndTheProgram | _HMG_2_
 *-----------------------------------------------------------------------------*
 
+
+*-----------------------------------------------------------------------------*
 DEFINE WINDOW TEMPLATE ;
   AT 269 , 413 ;
   WIDTH 682 ;
@@ -95,26 +97,26 @@ DEFINE WINDOW TEMPLATE ;
   END FRAME
 
   DEFINE LABEL lbl_0
-      ROW    50
-      COL    10
-      WIDTH  655
-      HEIGHT 80
-      VALUE ""
-      FONTNAME fARIAL
-      FONTSIZE 24
-      TOOLTIP ""
-      FONTBOLD .T.
-      FONTITALIC .F.
-      FONTUNDERLINE .F.
-      FONTSTRIKEOUT .F.
-      HELPID Nil
-      VISIBLE .T.
-      TRANSPARENT .F.
-      ACTION Nil
-      AUTOSIZE .F.
-      BACKCOLOR Nil
-      FONTCOLOR Nil
-      CENTERALIGN .T.
+    ROW    50
+    COL    10
+    WIDTH  655
+    HEIGHT 80
+    VALUE ""
+    FONTNAME fARIAL
+    FONTSIZE 24
+    TOOLTIP ""
+    FONTBOLD .T.
+    FONTITALIC .F.
+    FONTUNDERLINE .F.
+    FONTSTRIKEOUT .F.
+    HELPID Nil
+    VISIBLE .T.
+    TRANSPARENT .F.
+    ACTION Nil
+    AUTOSIZE .F.
+    BACKCOLOR Nil
+    FONTCOLOR Nil
+    CENTERALIGN .T.
   END LABEL
 
   DEFINE LABEL lbl_1
