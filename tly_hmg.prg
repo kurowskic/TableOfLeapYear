@@ -109,8 +109,8 @@ PROCEDURE Main()
   APP_HEIGHT :=  824
   APP_WIDTH  := 1536
 
-
 #ENDIF
+
 
   APP_ADJUST_X := 1
   APP_ADJUST_Y := 1
@@ -324,7 +324,6 @@ PROCEDURE Main()
     win_Main.btn_MinPR.Picture       := 'APP_MINI_20'
     win_Main.btn_ExitPR.Picture      := 'APP_EXIT_20'
 
-
     SetProperty( "win_Main" , "btn_About"  , "Col" , APP_WIDTH - INT( 105 * APP_ADJUST_X ) - 16 )
     SetProperty( "win_Main" , "btn_MinPR"  , "Col" , APP_WIDTH - INT(  70 * APP_ADJUST_X ) - 08 )
     SetProperty( "win_Main" , "btn_ExitPR" , "Col" , APP_WIDTH - INT(  35 * APP_ADJUST_X ) - 02 )
@@ -358,12 +357,13 @@ PROCEDURE Main()
     FOR nI := 1 TO LEN( aControls )
 
       AADD( aFrmControls ,;
-      { "win_Main" , aControls[ nI ] ,;
+      { "win_Main" ,;
+        aControls[ nI ] ,;
         GetProperty( "win_Main" , aControls[ nI ] , "Row"      ) ,;
         GetProperty( "win_Main" , aControls[ nI ] , "Col"      ) ,;
         GetProperty( "win_Main" , aControls[ nI ] , "Width"    ) ,;
         GetProperty( "win_Main" , aControls[ nI ] , "Height"   ) ,;
-        GetProperty( "win_Main" , aControls[ nI ] , "FontSize" ) ;
+        GetProperty( "win_Main" , aControls[ nI ] , "FontSize" )  ;
       } )
 
     NEXT nI
