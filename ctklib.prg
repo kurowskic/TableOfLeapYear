@@ -698,7 +698,7 @@ FUNCTION AddCtrl( nIndx )
 
   If !EMPTY( _HMG_SYSDATA [ 2 ] [ nIndx ] )
 
-    If ASCAN( aRetVal2, _HMG_SYSDATA [ 2 ] [ nIndx ] ) == 0
+    If ASCAN( aRetVal2 , _HMG_SYSDATA [ 2 ] [ nIndx ] ) == 0
 
       IF !EMPTY( _HMG_SYSDATA [ 3 ] [ nIndx ] )
 
