@@ -5,10 +5,12 @@ del *.obj
 del *.c
 del *.res
 del *.rsp
+del *.tds
 del _hmg_resconfig.h
 del errorlog.htm
 del tly_ver.ch
 del tly_hmg.exe
 del tly.exe
+del tly.log
 del temp.txt
 del *.bak

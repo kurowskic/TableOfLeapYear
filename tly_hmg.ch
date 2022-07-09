@@ -5,7 +5,7 @@
 *-----------------------------------------------------------------------------*
 
 #DEFINE  _PRG1_      '2022'
-#DEFINE  _PRG2_      '188'
+#DEFINE  _PRG2_      '190'
 #DEFINE  _PRG3_      '1'
 
 #DEFINE  _DB1_       ''
@@ -14,7 +14,7 @@
 
 
 #DEFINE  _OLD_PRG1_  '2022'
-#DEFINE  _OLD_PRG2_  '187'
+#DEFINE  _OLD_PRG2_  '188'
 #DEFINE  _OLD_PRG3_  '2'
 
 #DEFINE  _OLD_DB1_   ''
@@ -30,12 +30,14 @@
 
 #INCLUDE  "hmg.ch"
 
+
 #DEFINE  FALSE .F.
 #DEFINE  TRUE  .T.
 
-#define CRLF CHR( 13 ) + CHR( 10 )
-#define CR CHR( 13 )
-#define LF CHR( 10 )
+
+#DEFINE CRLF CHR( 13 ) + CHR( 10 )
+#DEFINE CR CHR( 13 )
+#DEFINE LF CHR( 10 )
 
 
 #IFNDEF __XHARBOUR__
