@@ -308,7 +308,7 @@ PROCEDURE Main()
     AADD( aFrm , { "win_Main" , win_Main.Row , win_Main.Col } )
 
     ON KEY ALT+F4 OF win_Main ACTION { || EndTheProgram() }
-    ON KEY F2     OF win_Main ACTION { || SetCenterMainWindow()    }
+    ON KEY F2     OF win_Main ACTION { || SetCenterMainWindow() }
 
 
 #IFDEF _HMG_2_
@@ -320,9 +320,9 @@ PROCEDURE Main()
 #ENDIF
 
 
-    win_Main.btn_About.Picture       := 'APP_INFO_20'
-    win_Main.btn_MinPR.Picture       := 'APP_MINI_20'
-    win_Main.btn_ExitPR.Picture      := 'APP_EXIT_20'
+    win_Main.btn_About.Picture  := 'APP_INFO_20'
+    win_Main.btn_MinPR.Picture  := 'APP_MINI_20'
+    win_Main.btn_ExitPR.Picture := 'APP_EXIT_20'
 
     SetProperty( "win_Main" , "btn_About"  , "Col" , APP_WIDTH - INT( 105 * APP_ADJUST_X ) - 16 )
     SetProperty( "win_Main" , "btn_MinPR"  , "Col" , APP_WIDTH - INT(  70 * APP_ADJUST_X ) - 08 )
