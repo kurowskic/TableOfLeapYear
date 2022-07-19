@@ -24,6 +24,8 @@ PROCEDURE Show_TitleBar()
   nAlingText   := BT_TEXT_LEFT + BT_TEXT_TOP
   nOrientation := 0
 
+  BT_DrawFillRectangle( hDC , 2 * APP_ADJUST_Y , 2 * APP_ADJUST_X , 1532 * APP_ADJUST_X , 34 * APP_ADJUST_Y , BLUE , BLUE , 1 )
+
   hBMP := BT_BitmapLoadFile( "APP_MAIN" )
   BT_DrawBitMap( hDC , 2 * APP_ADJUST_Y , 2 * APP_ADJUST_X , 32 * APP_ADJUST_Y , 32 * APP_ADJUST_X , BT_SCALE , hBMP )
 
